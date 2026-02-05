@@ -1,5 +1,5 @@
-# Practice 1 - Python Basics
+# Practice 2 - Python Booleans
 
-This folder contains basic Python exercises.
+This folder contains basic Python booleans.
 
 ## Structure
