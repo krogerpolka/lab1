@@ -1,5 +1,5 @@
 def calc(x, y):
-  return (x+y)-(x-y)
+  return (x+y)-(x-y) #calculate
 
-result = my_function(5, 3)
+result = calc(5, 3)
 print(result)
