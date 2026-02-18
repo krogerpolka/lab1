@@ -11,12 +11,12 @@ class Person:
 class Student(Person):
     # The Student class inherits from the Person class
 
-    def __init__(self, fname, lname, year):
+    def __init__(self, fname, lname, year): #stops to inherit __init__ of Person
 
-        # to initialize first name and last name
+        #inherit from Person 2 arguments
         super().__init__(fname, lname)
 
-        # Add a new attribute specific to Student
+        # Add an extra 
         self.graduationyear = year
 
     def welcome(self):
