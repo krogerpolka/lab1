@@ -1,3 +1,3 @@
-numbers = [34, 56, 78, 21, 1]
-sorted_numbers= sorted(numbers, key=lambda x: x)
-print(sorted_numbers)
+words = ["so", "black", "GOOD", "cricket"]
+sorted_words= sorted(words, key=lambda x: len(x)) # can use a lambda as a key for custom sorting
+print(sorted_words)

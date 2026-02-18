@@ -27,4 +27,4 @@ x = Student("Nurassyl", "Nazyrbek")
 x.printname()  # Prints: Nurassyl Nazyrbek - Student
 
 # Access additional attribute
-print(x.graduationyear)  # Prints: 2026
+print(x.graduationyear) 

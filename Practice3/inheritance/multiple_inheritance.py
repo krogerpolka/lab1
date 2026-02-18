@@ -24,15 +24,11 @@ class Student(me, Info):
         Info.__init__(self, age)               # Initialize Info part
         self.graduationyear = graduationyear  # Add new attribute
 
-    # Overriding printname method
-    def printname(self):
-        print(self.firstname, self.lastname, "- Student")
-
 
 # Create object of Student
 x = Student("Nurassyl", "Nazyrbek", 20, 2026)
 
 # Call methods
-x.printname()       # Prints: Nurassyl Nazyrbek - Student
-x.printage()        # Prints: Age: 20
-print(x.graduationyear)  # Prints: 2026
+x.printname()       
+x.printage()        
+print(x.graduationyear)  
