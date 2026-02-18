@@ -1,4 +1,4 @@
-# Practice 2 - Python Booleans
+# Practice 3 - Python Booleans
 
 This folder contains basic Python functions, classes, inheritance and lambda.
 
