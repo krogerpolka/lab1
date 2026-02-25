@@ -1,28 +1,11 @@
-# Practice 3 - Python 
+# Practice 4 - Python 
 
 
-This folder contains basic Python functions, classes, inheritance and lambda.
+This practice covers advanced Python concepts including iterators and generators, working with dates, mathematical operations, and JSON handling. These topics are essential for writing efficient and maintainable Python code.
 
 ## Structure
-Practice-03/
-├── functions/
-│   ├── basic_functions.py
-│   ├── function_arguments.py
-│   ├── return_values.py
-│   └── args_kwargs.py
-├── lambda/
-│   ├── lambda_basics.py
-│   ├── lambda_with_map.py
-│   ├── lambda_with_filter.py
-│   └── lambda_with_sorted.py
-├── classes/
-│   ├── class_definition.py
-│   ├── init_method.py
-│   ├── class_methods.py
-│   └── class_variables.py
-├── inheritance/
-│   ├── inheritance_basics.py
-│   ├── super_function.py
-│   ├── method_overriding.py
-│   └── multiple_inheritance.py
-└── README.md (this file)
+Your-Repository/
+├── generators.py     # Iterator and generator exercises
+├── dates.py          # Date and time operations
+├── math.py           # Math and random operations
+└── json.py           # JSON parsing and creation
