@@ -3,7 +3,7 @@ from datetime import date, timedelta #working with DATE and timedelta for  findi
 
 today  = date.today()
 
-old_date = date - timedelta(days=5)
+old_date = today - timedelta(days=5)
 
 print(today.strftime("%m/%d/%y")) #string format
 print(old_date.strftime("%m/%d/%y"))

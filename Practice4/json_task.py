@@ -11,7 +11,7 @@ print(f"{'-'*50:<50} {'-'*20:<20} {'-'*8:<8} {'-'*6:<6}") #creating separated li
 for i in y["imdata"]: #through each element in list
     dn = i["l1PhysIf"]["attributes"]["dn"] #element i, to key, than attributes, and defined fields
     speed = i["l1PhysIf"]["attributes"]["speed"]
-    mtu = i["l1PhysIf"]["attributes"]["mtu"]
+    mtu = i["l1PhysIf"]["attributes"]["mtu"] 
     
     print(f"{dn:<50} {'':<20} {speed:<8} {mtu:<6}")
    

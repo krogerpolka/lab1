@@ -2,7 +2,8 @@
 import math
 
 a = int(input("Input degree: "))
-radian = math.radians(a)
+pi= 3.142848
+radian = a*pi/180
 print("Output radian:", round(radian, 6))
 
 #2
