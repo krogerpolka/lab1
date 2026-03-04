@@ -1,11 +1,9 @@
-# Practice 4 - Python 
+# Practice 5 - Python 
 
 
-This practice covers advanced Python concepts including iterators and generators, working with dates, mathematical operations, and JSON handling. These topics are essential for writing efficient and maintainable Python code.
-
+This practice focuses on mastering regular expressions in Python. You will learn to search, match, find, and replace text patterns using Python's re module. Practical exercises include parsing receipt data from the provided raw.txt file.
 ## Structure
-Your-Repository/
-├── generators.py     # Iterator and generator exercises
-├── dates.py          # Date and time operations
-├── math.py           # Math and random operations
-└── json.py           # JSON parsing and creation
+Practice5/
+├── receipt_parser.py
+├── raw.txt
+└── README.md
