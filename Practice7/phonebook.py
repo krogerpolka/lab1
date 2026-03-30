@@ -3,26 +3,24 @@ from connect import get_connection
 
 
 def create_table():
-    conn = get_connection() #connection to DB
-    cur = conn.cursor() #object for doing SQL
-#send a command to DB to do SQL 
+    conn = get_connection()
+    cur = conn.cursor()
     cur.execute("""
     CREATE TABLE IF NOT EXISTS phonebook (
         id SERIAL PRIMARY KEY,  
         name VARCHAR(100),
         phone VARCHAR(20)
     );
-    """) #id auto increasing
-
-    conn.commit() #save changes
+    """)
+    conn.commit()
     cur.close()
-    conn.close() #close the connection
+    conn.close()
 
 
-# insert from csv
 def insert_from_csv(filename):
     conn = get_connection()
-    cur = conn.cursor() # SQL queries are executed
+    cur = conn.cursor()
+    count = 0
 
     with open(filename, "r") as f:
         reader = csv.reader(f)
@@ -30,12 +28,13 @@ def insert_from_csv(filename):
             cur.execute(
                 "INSERT INTO phonebook (name, phone) VALUES (%s, %s)",
                 (row[0], row[1])
-            ) # %s- substitutions of values
+            )
+            count += 1
 
     conn.commit()
     cur.close()
     conn.close()
-
+    print(f" added {count} contacts from file '{filename}'")
 
 
 def insert_from_console():
@@ -44,18 +43,16 @@ def insert_from_console():
 
     conn = get_connection()
     cur = conn.cursor()
-
     cur.execute(
         "INSERT INTO phonebook (name, phone) VALUES (%s, %s)",
         (name, phone)
     )
-
     conn.commit()
     cur.close()
     conn.close()
+    print(f"contact '{name}' — {phone} successfully added")
 
 
-# 🔄 Обновление
 def update_contact():
     name = input("Enter name to update: ")
     new_name = input("New name: ")
@@ -63,18 +60,29 @@ def update_contact():
 
     conn = get_connection()
     cur = conn.cursor()
+    updated = False
 
     if new_name:
         cur.execute("UPDATE phonebook SET name=%s WHERE name=%s", (new_name, name))
+        if cur.rowcount > 0:
+            print(f"Name changed: '{name}' → '{new_name}'")
+            updated = True
+
     if new_phone:
-        cur.execute("UPDATE phonebook SET phone=%s WHERE name=%s", (new_phone, name))
+        target = new_name if new_name else name
+        cur.execute("UPDATE phonebook SET phone=%s WHERE name=%s", (new_phone, target))
+        if cur.rowcount > 0:
+            print(f"Number updated: {new_phone}")
+            updated = True
+
+    if not updated:
+        print("Contact is not found or nothing changed")
 
     conn.commit()
     cur.close()
     conn.close()
 
 
-# Search
 def query_contacts():
     choice = input("Search by (1-name / 2-phone prefix): ")
 
@@ -83,20 +91,28 @@ def query_contacts():
 
     if choice == "1":
         name = input("Enter name: ")
-        cur.execute("SELECT * FROM phonebook WHERE name ILIKE %s", ('%' + name + '%',)) #I-dont look to register, %-partial match
+        cur.execute("SELECT * FROM phonebook WHERE name ILIKE %s", ('%' + name + '%',))
     elif choice == "2":
         prefix = input("Enter phone prefix: ")
         cur.execute("SELECT * FROM phonebook WHERE phone LIKE %s", (prefix + '%',))
+    else:
+        print("Wrong choose")
+        cur.close()
+        conn.close()
+        return
 
-    rows = cur.fetchall() #find all records, used after SELECT
-    for row in rows:
-        print(row)
+    rows = cur.fetchall()
+    if rows:
+        print(f"\n Found {len(rows)} contacts:")
+        for row in rows:
+            print(f"  ID: {row[0]} | Name: {row[1]} | Phone: {row[2]}")
+    else:
+        print("Contacts are not found")
 
     cur.close()
     conn.close()
 
 
-# Deleting
 def delete_contact():
     choice = input("Delete by (1-name / 2-phone): ")
 
@@ -106,16 +122,41 @@ def delete_contact():
     if choice == "1":
         name = input("Enter name: ")
         cur.execute("DELETE FROM phonebook WHERE name=%s", (name,))
+        deleted = cur.rowcount
+        print(f"Deleted {deleted} contact '{name}'" if deleted else f"Contact '{name}' not found")
     elif choice == "2":
         phone = input("Enter phone: ")
         cur.execute("DELETE FROM phonebook WHERE phone=%s", (phone,))
+        deleted = cur.rowcount
+        print(f"Deleted {deleted} contact '{phone}'" if deleted else f"Phone '{phone}' not found")
+    else:
+        print("wrong choose")
 
     conn.commit()
     cur.close()
     conn.close()
 
+def show_all_contacts():
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM phonebook ORDER BY id")
+    rows = cur.fetchall()
+    cur.close()
+    conn.close()
 
-# iNTERFACE
+    if not rows:
+        print(" Phonebook is empty")
+        return
+
+    print(f"\n{'─'*40}")
+    print(f"{'ID':<5} {'Name':<20} {'Phone':<15}")
+    print(f"{'─'*40}")
+    for row in rows:
+        print(f"{row[0]:<5} {row[1]:<20} {row[2]:<15}")
+    print(f"{'─'*40}")
+    print(f"Total: {len(rows)} contact(s)")
+
+
 def menu():
     create_table()
 
@@ -126,6 +167,7 @@ def menu():
         print("3 - Update contact")
         print("4 - Search")
         print("5 - Delete")
+        print("6 - Show all contacts")  
         print("0 - Exit")
 
         choice = input("Choose: ")
@@ -140,11 +182,13 @@ def menu():
             query_contacts()
         elif choice == "5":
             delete_contact()
+        elif choice == "6":
+            show_all_contacts()  
         elif choice == "0":
+            print("Bye")
             break
         else:
-            print("Invalid choice")
-
-
+            print("Wrong choose")
 if __name__ == "__main__":
     menu()
+
