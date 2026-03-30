@@ -5,7 +5,7 @@ from connect import get_connection
 def create_table():
     conn = get_connection() #connection to DB
     cur = conn.cursor() #object for doing SQL
-
+#send a command to DB to do SQL 
     cur.execute("""
     CREATE TABLE IF NOT EXISTS phonebook (
         id SERIAL PRIMARY KEY,  
@@ -30,7 +30,7 @@ def insert_from_csv(filename):
             cur.execute(
                 "INSERT INTO phonebook (name, phone) VALUES (%s, %s)",
                 (row[0], row[1])
-            )
+            ) # %s- substitutions of values
 
     conn.commit()
     cur.close()
@@ -88,7 +88,7 @@ def query_contacts():
         prefix = input("Enter phone prefix: ")
         cur.execute("SELECT * FROM phonebook WHERE phone LIKE %s", (prefix + '%',))
 
-    rows = cur.fetchall() #find all records
+    rows = cur.fetchall() #find all records, used after SELECT
     for row in rows:
         print(row)
 
