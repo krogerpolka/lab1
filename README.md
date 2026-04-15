@@ -1,12 +1,27 @@
-Practice 8: PostgreSQL Functions & Stored Procedures, PhoneBook (cont.)
+Practice 09: Game Development with Pygame - Part 1
 1. Objective
-This practice extends the PhoneBook application from Practice 7 by introducing PostgreSQL functions and stored procedures. You will move core data-manipulation logic into the database layer, gaining experience with server-side SQL programming, control flow, and input validation inside PostgreSQL.
+This practice introduces game development using Pygame. You will learn graphics, input handling, and animations by creating three classic games. This part focuses on basic concepts and implementation.
+
+
 
 
 ## Structure
-Practice8/
-├── phonebook.py
-├── functions.sql
-├── procedures.sql
-├── config.py
-└── connect.py
+Practice9/
+├── mickeys_clock/
+│   ├── main.py
+│   ├── clock.py
+│   ├── images/
+│   │   └── mickey_hand.png
+│   └── README.md
+├── music_player/
+│   ├── main.py
+│   ├── player.py
+│   ├── music/
+│   │   └── sample_tracks/
+│   └── README.md
+├── moving_ball/
+│   ├── main.py
+│   ├── ball.py
+│   └── README.md
+├── requirements.txt
+└── README.md
