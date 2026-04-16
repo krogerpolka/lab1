@@ -1,54 +1,17 @@
-# Mickey's Clock — Practice 7
+3.1 Mickey's Clock Application
+Objective: Create a digital-style clock using Mickey Mouse hand graphics
 
-Часы с руками Микки Мауса на pygame.
+Requirements:
 
-## Структура проекта
+Display current system time (minutes and seconds only)
+Use Mickey Mouse's hands as clock hands
+Right hand = minutes hand
+Left hand = seconds hand
+Synchronize with system clock in real-time
+Update display every second
+Implementation Tips:
 
-```
-Practice7/
-└── mickeys_clock/
-    ├── main.py        # Точка входа, игровой цикл
-    ├── clock.py       # Класс MickeyClock (логика + отрисовка)
-    ├── images/
-    │   ├── mickey.png      # Тело Микки Мауса
-    │   ├── hand_left.png   # Левая рука  = секунды (вращается)
-    │   ├── hand_right.png  # Правая рука = минуты  (стоит)
-    │   └── clock.png       # Фон-циферблат
-    └── README.md
-```
-
-## Установка и запуск
-
-```bash
-pip install pygame
-python main.py
-```
-
-## Логика работы
-
-| Рука        | Стрелка  | Поведение                        |
-|-------------|----------|----------------------------------|
-| Левая рука  | Секунды  | Крутится (360° за 60 секунд)     |
-| Правая рука | Минуты   | Стоит неподвижно                 |
-
-### Вычисление угла поворота секундной стрелки
-
-```python
-# 0 сек = 12 часов = направление "вверх"
-# pygame.transform.rotate вращает ПРОТИВ часовой → берём отрицательный угол
-angle_deg = -(seconds / 60.0) * 360 - 90
-rotated = pygame.transform.rotate(hand_image, angle_deg)
-```
-
-### Расположение на экране
-
-- Mickey стоит по центру экрана
-- Руки крепятся к плечам (смещение от центра ±4% ширины экрана)
-- Внизу отображается цифровое время `MM:SS`
-
-## Клавиши
-
-| Клавиша | Действие |
-|---------|----------|
-| `ESC`   | Выход    |
-| Закрыть окно | Выход |
+Use pygame.transform.rotate() to rotate hands
+Reference: StackOverflow - Rotating Graphics
+Calculate rotation angles based on current time
+Handle edge cases (leap seconds, etc.)
