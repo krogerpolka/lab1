@@ -1,27 +1,28 @@
-Practice 09: Game Development with Pygame - Part 1
-1. Objective
-This practice introduces game development using Pygame. You will learn graphics, input handling, and animations by creating three classic games. This part focuses on basic concepts and implementation.
+Practice 10
+1. Racer
+Extend example project from lecture and finish following tutorials:
 
+https://coderslegacy.com/python/python-pygame-tutorial/
+https://coderslegacy.com/python/pygame-tutorial-part-2/
+https://coderslegacy.com/python/pygame-tutorial-part-3/
+Extra tasks to the given tutorial:
 
+Adding randomly appearing coins on the road
+Showing the number of collected coins in the top right corner
+Comment your code
+2. Snake
+Extend example project from lecture and add the following functionality:
 
+Checking for border (wall) collision and whether the snake is leaving the playing area
+Generate random position for food, so that it does not fall on a wall or a snake
+Add levels. For example, when the snake receives 3-4 foods or depending on score 
+Increase speed when the user passes to the next level
+Add counter to score and level
+Comment your code
+3 Paint.
+Extend example project from https://nerdparadise.com/programming/pygame/part6 and add the following functionality:
 
-## Structure
-Practice9/
-├── mickeys_clock/
-│   ├── main.py
-│   ├── clock.py
-│   ├── images/
-│   │   └── mickey_hand.png
-│   └── README.md
-├── music_player/
-│   ├── main.py
-│   ├── player.py
-│   ├── music/
-│   │   └── sample_tracks/
-│   └── README.md
-├── moving_ball/
-│   ├── main.py
-│   ├── ball.py
-│   └── README.md
-├── requirements.txt
-└── README.md
+Draw rectangle
+Draw circle
+Eraser
+Color selection
