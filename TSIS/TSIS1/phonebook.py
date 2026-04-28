@@ -1,17 +1,5 @@
 """
 phonebook.py — TSIS 1  Extended Contact Management
-===================================================
-Builds on top of Practice 7 & 8 (CRUD, CSV import, pattern-search function,
-upsert / bulk-insert procedures, pagination function).
-Nothing from Practice 7/8 is re-implemented here.
-
-New features
-------------
-3.1  Extended schema  — phones table, groups table, email, birthday
-3.2  Console search   — filter by group, search by email, sort, paged navigation
-3.3  Import / Export  — JSON export, JSON import with duplicate handling,
-                        extended CSV import (email, birthday, group, phone type)
-3.4  New procedures   — add_phone, move_to_group, search_contacts (via SQL files)
 """
 
 # --- Standard library imports ---
@@ -22,9 +10,8 @@ from datetime import date, datetime # date — stores dates, datetime — parses
 from connect import get_connection  # our custom DB connection helper from connect.py
 
 
-# ─────────────────────────────────────────────────────────────
+
 # HELPERS  — small utility functions used by many other functions
-# ─────────────────────────────────────────────────────────────
 
 def _run_sql_file(path: str):
     """
@@ -96,7 +83,7 @@ def _choose_group(cur) -> int | None:
     print("  Groups:")
     for g in groups:
         print(f"    {g[0]}. {g[1]}")   # show group ID and name
-    choice = input("  Enter group number (or Enter to skip): ").strip()
+    choice = input("  Enter group number (or Enter to skip): ").strip() # strip to avoid whitespace issues
     if not choice:
         return None             # user skipped
     for g in groups:
@@ -106,9 +93,9 @@ def _choose_group(cur) -> int | None:
     return None
 
 
-# ─────────────────────────────────────────────────────────────
+
 # 3.1  SCHEMA INITIALISATION
-# ─────────────────────────────────────────────────────────────
+
 
 def init_schema():
     """
@@ -145,9 +132,9 @@ def init_procedures():
     print("  Procedures ready.")
 
 
-# ─────────────────────────────────────────────────────────────
+
 # 3.2  ADVANCED CONSOLE SEARCH & FILTER
-# ─────────────────────────────────────────────────────────────
+
 
 def _fetch_contacts(conn, order_by="name"):
     """
@@ -156,7 +143,7 @@ def _fetch_contacts(conn, order_by="name"):
     STRING_AGG concatenates multiple phone numbers into one comma-separated string.
     order_by: 'name' | 'birthday' | 'created_at'
     """
-    # Whitelist allowed columns to prevent SQL injection via f-string
+    # Whitelist allowed columns to prevent SQL injection f-string
     allowed = {"name", "birthday", "created_at"}
     if order_by not in allowed:
         order_by = "name"       # fall back to name if invalid input
@@ -285,10 +272,10 @@ def paginated_navigation():
     # Count total contacts to calculate how many pages exist
     conn = get_connection()
     cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM contacts")
+    cur.execute("SELECT COUNT(*) FROM contacts") # get total number of contacts
     total = cur.fetchone()[0]   # single integer: total number of contacts
-    cur.close()
-    conn.close()
+    cur.close() 
+    conn.close() 
 
     if total == 0:
         print("  Phonebook is empty.")
@@ -336,9 +323,9 @@ def paginated_navigation():
             break                   # exit paged navigation
 
 
-# ─────────────────────────────────────────────────────────────
+
 # 3.3  IMPORT / EXPORT
-# ─────────────────────────────────────────────────────────────
+
 
 def _json_default(obj):
     """
@@ -589,9 +576,9 @@ def import_csv_extended():
     _import_csv_from_path(path)
 
 
-# ─────────────────────────────────────────────────────────────
+
 # 3.4  WRAPPERS FOR NEW STORED PROCEDURES / FUNCTION
-# ─────────────────────────────────────────────────────────────
+
 
 def add_phone_to_contact():
     """
@@ -658,9 +645,9 @@ def full_search():
     _print_contacts(rows)
 
 
-# ─────────────────────────────────────────────────────────────
+
 # ADD CONTACT  (full extended form)
-# ─────────────────────────────────────────────────────────────
+
 
 def add_contact_full():
     """
@@ -702,9 +689,9 @@ def add_contact_full():
     print(f"  Contact '{name}' added (ID {contact_id}).")
 
 
-# ─────────────────────────────────────────────────────────────
+
 # MENU
-# ─────────────────────────────────────────────────────────────
+
 
 def menu():
     """

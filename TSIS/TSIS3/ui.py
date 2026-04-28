@@ -25,9 +25,9 @@ DIM      = ( 60,  60,  80)    # Muted button background when not hovered
 HIGHLIGHT= (255, 255, 255)    # Pure white — hovered button border
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # SHARED HELPERS
-# ══════════════════════════════════════════════════════════════════════════════
+
 
 def _fill_bg(surface):
     """
@@ -65,9 +65,9 @@ def _button(label, x, y, w, h, hovered, font=font_medium):
     return pygame.Rect(x, y, w, h)   # Return Rect so the caller can test mouse clicks
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # USERNAME ENTRY  —  shown once at launch so the player can set their name
-# ══════════════════════════════════════════════════════════════════════════════
+
 
 def username_screen(default_name: str = "") -> str:
     """
@@ -123,9 +123,9 @@ def username_screen(default_name: str = "") -> str:
                     name.append(event.unicode)     # Append printable character (letters, digits, etc.)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # MAIN MENU  —  the first screen after username entry
-# ══════════════════════════════════════════════════════════════════════════════
+
 
 def main_menu() -> str:
     """
@@ -178,9 +178,9 @@ def main_menu() -> str:
                         return items[i][1]   # Return action for the clicked button
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # SETTINGS SCREEN  —  change sound, car colour, difficulty
-# ══════════════════════════════════════════════════════════════════════════════
+
 
 def settings_screen() -> dict:
     """
@@ -260,9 +260,9 @@ def settings_screen() -> dict:
                             cfg["difficulty"] = next_option(diff_options, cfg["difficulty"])
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # LEADERBOARD SCREEN  —  shows top-10 saved scores
-# ══════════════════════════════════════════════════════════════════════════════
+
 
 def leaderboard_screen():
     """

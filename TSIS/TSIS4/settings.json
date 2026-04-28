@@ -1,21 +1,21 @@
 {
     "snake_head_color": [
-        50,
+        255,
         220,
-        220
+        30
     ],
     "snake_body_color": [
-        30,
+        200,
         160,
-        160
+        20
     ],
     "snake_outline_color": [
-        10,
+        120,
         90,
-        90
+        10
     ],
-    "grid_overlay": false,
-    "sound": true,
+    "grid_overlay": true,
+    "sound": false,
     "db": {
         "host": "localhost",
         "port": 5432,

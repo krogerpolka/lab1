@@ -111,9 +111,9 @@ font_small  = pygame.font.SysFont("Consolas", 15)             # HUD info, leader
 font_tiny   = pygame.font.SysFont("Consolas", 12)             # Small labels on obstacles/coins
 
 
-# ══════════════════════════════════════════════
+
 # PlayerCar  —  the car the user controls
-# ══════════════════════════════════════════════
+
 class PlayerCar:
     WIDTH  = 50    # Car rectangle width in pixels
     HEIGHT = 80    # Car rectangle height in pixels
@@ -223,9 +223,9 @@ class PlayerCar:
             pygame.draw.ellipse(surface, YELLOW, inner)
 
 
-# ══════════════════════════════════════════════
+
 # EnemyCar  —  AI traffic cars that scroll down
-# ══════════════════════════════════════════════
+
 class EnemyCar:
     WIDTH  = 50
     HEIGHT = 80
@@ -277,9 +277,9 @@ class EnemyCar:
                          (self.rect.right - 17, self.rect.bottom - 12, 12, 8), border_radius=2)
 
 
-# ══════════════════════════════════════════════
+
 # Coin  —  collectible items that fall down the road
-# ══════════════════════════════════════════════
+
 class Coin:
     FALL_SPEED = 4   # Pixels per frame the coin moves downward
 
@@ -310,9 +310,9 @@ class Coin:
         surface.blit(lbl, (cx - lbl.get_width() // 2, cy - lbl.get_height() // 2))     # Centered label
 
 
-# ══════════════════════════════════════════════
+
 # PowerUp  —  falling items that grant special abilities
-# ══════════════════════════════════════════════
+
 # Visual definition for each power-up type
 POWERUP_DEFS = {
     "nitro":  {"label": "N", "color": ORANGE, "outline": (200, 90,  0),  "radius": 14},  # Speed boost
@@ -364,9 +364,9 @@ class PowerUp:
         surface.blit(lbl, (cx - lbl.get_width() // 2, cy - lbl.get_height() // 2))
 
 
-# ══════════════════════════════════════════════
+
 # Obstacle  —  road hazards that damage the player
-# ══════════════════════════════════════════════
+
 OBSTACLE_TYPES = [
     {"kind": "hole",    "color": (30,  20,  10),  "w": 44, "h": 32, "damage": 1, "deadly": False},   # Pothole — 1 damage
     {"kind": "oil",     "color": (20,  20,  60),  "w": 50, "h": 22, "damage": 1, "deadly": False},   # Oil slick — 1 damage
@@ -428,9 +428,9 @@ class Obstacle:
                                 self.rect.centery - lbl.get_height() // 2))
 
 
-# ══════════════════════════════════════════════
+
 # NitroStrip  —  road strip that auto-activates nitro on contact
-# ══════════════════════════════════════════════
+
 class NitroStrip:
     """
     A glowing 'N' circle that falls down the road.
@@ -470,9 +470,9 @@ class NitroStrip:
         surface.blit(lbl, (cx - lbl.get_width() // 2, cy - lbl.get_height() // 2))
 
 
-# ══════════════════════════════════════════════
+
 # draw_road  —  renders the scrolling road background
-# ══════════════════════════════════════════════
+
 def draw_road(surface, offset):
     """
     Draw the full road scene each frame.
@@ -496,9 +496,9 @@ def draw_road(surface, offset):
             pygame.draw.rect(surface, WHITE, (lx - 2, y, 4, 40))   # 40 px dash, 40 px gap
 
 
-# ══════════════════════════════════════════════
+
 # draw_hud  —  renders the Heads-Up Display
-# ══════════════════════════════════════════════
+
 def draw_hud(surface, score, coin_count, enemy_speed, coins_to_boost,
              distance, powerup_info=None, hp=3, max_hp=3):
     """
@@ -548,9 +548,9 @@ def draw_hud(surface, score, coin_count, enemy_speed, coins_to_boost,
     surface.blit(leg, (SCREEN_WIDTH - leg.get_width() - 8, SCREEN_HEIGHT - 18))
 
 
-# ══════════════════════════════════════════════
+
 # game_over_screen  —  shown when the player dies
-# ══════════════════════════════════════════════
+
 def game_over_screen(score, coin_count, distance):
     """
     Display final stats and wait for input.

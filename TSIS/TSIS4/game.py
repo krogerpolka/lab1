@@ -2,6 +2,10 @@
 # game.py  — Core game objects: Snake, Food, PoisonFood, PowerUp, Obstacle
 #            Plus all drawing helpers: draw_field, draw_hud, sound manager.
 # This module is imported by main.py; it never runs a game loop on its own.
+#
+# © 2024 TSIS 4 Project. All rights reserved.
+# Unauthorized copying, modification, or distribution of this file,
+# via any medium, is strictly prohibited without prior written permission.
 # ─────────────────────────────────────────────────────────────────────────────
 
 import pygame
@@ -167,9 +171,9 @@ def cell_to_px(col: int, row: int) -> tuple[int, int]:
     return col * CELL, row * CELL + PANEL_H
 
 
-# ══════════════════════════════════════════════
+
 # CLASS: Snake
-# ══════════════════════════════════════════════
+
 class Snake:
     """Player-controlled snake stored as an ordered list of (col, row) cells.
     Index 0 is always the head. Movement is tile-based (one cell per step).
@@ -269,9 +273,9 @@ class Snake:
             pygame.draw.circle(surface, BG_COLOR,   (px + ex, py + ey), 1)  # dark pupil
 
 
-# ══════════════════════════════════════════════
+
 # CLASS: Food
-# ══════════════════════════════════════════════
+
 class Food:
     """Normal food item — weighted random type, optional lifetime countdown."""
 
@@ -326,9 +330,9 @@ class Food:
             pygame.draw.rect(surface, bar_color, (px, py + CELL - 3, bar_w, 3))
 
 
-# ══════════════════════════════════════════════
+
 # CLASS: PoisonFood
-# ══════════════════════════════════════════════
+
 class PoisonFood:
     """Poison food: dark-red skull. Eating it shortens the snake by 2 segments.
     If the snake becomes too short (len ≤ 1) the game ends.
@@ -364,9 +368,9 @@ class PoisonFood:
         pygame.draw.rect(surface, (180, 30, 30), (px, py + CELL - 3, bar_w, 3))
 
 
-# ══════════════════════════════════════════════
+
 # CLASS: PowerUp
-# ══════════════════════════════════════════════
+
 class PowerUp:
     """Temporary collectible power-up: speed boost, slow motion, or shield.
 
@@ -415,9 +419,9 @@ class PowerUp:
         pygame.draw.rect(surface, self.color, (px, py + CELL - 3, bar_w, 3))
 
 
-# ══════════════════════════════════════════════
+
 # CLASS: Obstacle
-# ══════════════════════════════════════════════
+
 class Obstacle:
     """Static wall block inside the arena.
 
@@ -461,9 +465,9 @@ def place_obstacles(count: int, occupied: set) -> list[Obstacle]:
     return obstacles
 
 
-# ══════════════════════════════════════════════
+
 # DRAWING HELPERS
-# ══════════════════════════════════════════════
+
 
 def draw_field(surface: pygame.Surface, show_grid: bool, obstacles: list):
     """Draw background, optional grid lines, border, and obstacle blocks."""

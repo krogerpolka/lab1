@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS groups (
 -- ON CONFLICT (name) DO NOTHING = skip silently if the group already exists.
 INSERT INTO groups (name) VALUES
     ('Family'), ('Work'), ('Friend'), ('Other')
-ON CONFLICT (name) DO NOTHING;
+ON CONFLICT (name) DO NOTHING; -- safe to run multiple times without error
 
 
 -- TABLE 2: contacts — the main entity of the phonebook.

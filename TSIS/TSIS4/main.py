@@ -2,6 +2,10 @@
 # main.py  — Entry point: game screens (Main Menu, Gameplay, Game Over,
 #             Leaderboard, Settings) and the primary game loop.
 # Run this file to start the game: python main.py
+#
+# © 2024 TSIS 4 Project. All rights reserved.
+# Unauthorized copying, modification, or distribution of this file,
+# via any medium, is strictly prohibited without prior written permission.
 # ─────────────────────────────────────────────────────────────────────────────
 
 import pygame
@@ -530,19 +534,26 @@ def run_game(username: str, player_id: int | None) -> tuple[int, int]:
                     break   # only one food eaten per step
 
             # ── Check head vs. poison food ────────────────────────────────────
+            # Poison food penalty: shrink the snake AND deduct points from score.
+            # The penalty equals 2 × current level, so it scales with difficulty.
             for p in poison[:]:
-                if snake.body[0] == p.pos:
-                    poison.remove(p)
-                    snd.play("poison")
-                    survived = snake.shrink(2)   # remove 2 tail segments
+                if snake.body[0] == p.pos:   # head collided with poison cell
+                    poison.remove(p)          # remove the poison item from the field
+                    snd.play("poison")        # play the poison sound effect
+
+                    # ── Score penalty ─────────────────────────────────────────
+                    # Deduct exactly 1 point; clamp to 0 so score never goes negative.
+                    score = max(0, score - 1)  # score cannot drop below zero
+
+                    survived = snake.shrink(2)   # remove 2 tail segments from the snake
                     if not survived:
-                        # Snake too short — treat as death
-                        pygame.time.set_timer(EXTRA_FOOD_EVENT,    0)
+                        # Snake body too short after shrinking — treat as death
+                        pygame.time.set_timer(EXTRA_FOOD_EVENT,    0)  # cancel all spawn timers
                         pygame.time.set_timer(POISON_SPAWN_EVENT,  0)
                         pygame.time.set_timer(POWERUP_SPAWN_EVENT, 0)
-                        snd.play("gameover")
-                        return score, level
-                    break
+                        snd.play("gameover")   # play game-over sound before exiting
+                        return score, level    # exit the loop and report final result
+                    break  # only one poison collision processed per step
 
             # ── Check head vs. power-ups ──────────────────────────────────────
             for pu in powerups[:]:

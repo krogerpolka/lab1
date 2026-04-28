@@ -7,7 +7,7 @@ import shutil, os
 
 # Delete the bytecode cache so Python always reloads the latest source files
 if os.path.exists("__pycache__"):
-    shutil.rmtree("__pycache__")
+    shutil.rmtree("__pycache__") # Remove the __pycache__ directory where Python stores compiled bytecode files (.pyc)  
 
 import pygame   # Core game library
 import random   # Used for random coin/obstacle spawning probability
@@ -71,8 +71,8 @@ def play(settings: dict):
     POWERUP_EV  = pygame.USEREVENT + 5   # Triggers power-up spawn
 
     pygame.time.set_timer(ENEMY_EV,    e_ms)   # Set how often each event fires (ms)
-    pygame.time.set_timer(COIN_EV,     c_ms)
-    pygame.time.set_timer(OBSTACLE_EV, o_ms)
+    pygame.time.set_timer(COIN_EV,     c_ms)   # Coins spawn more frequently than enemies/obstacles
+    pygame.time.set_timer(OBSTACLE_EV, o_ms)   # Obstacles spawn at their own rate
     pygame.time.set_timer(STRIP_EV,    5000)   # Nitro strips every 5 seconds
     pygame.time.set_timer(POWERUP_EV,  7000)   # Power-up every 7 seconds
 
@@ -85,7 +85,7 @@ def play(settings: dict):
         e_ms  = max(600,  int(e_ms  * 0.92))           # Reduce enemy spawn interval by 8% (min 600 ms)
         o_ms  = max(800,  int(o_ms  * 0.92))           # Reduce obstacle spawn interval by 8% (min 800 ms)
         pygame.time.set_timer(ENEMY_EV,    e_ms)       # Apply updated spawn intervals
-        pygame.time.set_timer(OBSTACLE_EV, o_ms)
+        pygame.time.set_timer(OBSTACLE_EV, o_ms)       # Update obstacle spawn timer
         sfx.set_engine_pitch(enemy_speed)              # Adjust engine sound volume with speed
 
     active_pu = None    # Name of currently active power-up (None = none active)
@@ -126,7 +126,7 @@ def play(settings: dict):
 
         # ── Distance & difficulty scaling ──────
         distance += DISTANCE_PER_FRAME   # Accumulate virtual metres every frame
-        if distance - last_scale_dist >= 500:   # Every 500 m → increase difficulty
+        if distance - last_scale_dist >= 800:   # Every 800 m → increase difficulty
             last_scale_dist = distance
             scale_difficulty()
 

@@ -9,10 +9,6 @@
       {
         "phone": "87001112233",
         "type": "mobile"
-      },
-      {
-        "phone": "87002223344",
-        "type": "home"
       }
     ]
   },
@@ -21,7 +17,7 @@
     "name": "Bob Jones",
     "email": "bob@work.com",
     "birthday": "1985-11-30",
-    "group": "Work",
+    "group": "Friend",
     "phones": [
       {
         "phone": "87009998877",
@@ -44,34 +40,14 @@
   },
   {
     "id": 4,
-    "name": "Nura",
-    "email": "gogol@kbtu.kz",
-    "birthday": "2007-10-16",
+    "name": "Merey Kumar",
+    "email": "meres@gmail.com",
+    "birthday": "1992-08-15",
     "group": "Friend",
     "phones": [
       {
-        "phone": "8888888",
+        "phone": "87005556677",
         "type": "mobile"
-      },
-      {
-        "phone": "797979",
-        "type": "home"
-      },
-      {
-        "phone": "5454",
-        "type": "work"
-      },
-      {
-        "phone": "1",
-        "type": "mobile"
-      },
-      {
-        "phone": "1",
-        "type": "mobile"
-      },
-      {
-        "phone": "01",
-        "type": "work"
       }
     ]
   }

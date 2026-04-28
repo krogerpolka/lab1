@@ -1,7 +1,10 @@
-
 # db.py  — PostgreSQL integration via psycopg2
 # Handles: connection, schema creation, saving results, leaderboard queries.
 # All DB errors are caught and logged so the game keeps running without a DB.
+#
+# © 2024 TSIS 4 Project. All rights reserved.
+# Unauthorized copying, modification, or distribution of this file,
+# via any medium, is strictly prohibited without prior written permission.
 
 
 import psycopg2                        # PostgreSQL adapter for Python

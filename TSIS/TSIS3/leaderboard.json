@@ -24,10 +24,22 @@
     "coins": 10
   },
   {
+    "name": "0",
+    "score": 42,
+    "distance": 1629,
+    "coins": 1
+  },
+  {
     "name": "User0",
     "score": 37,
     "distance": 982,
     "coins": 12
+  },
+  {
+    "name": "k",
+    "score": 31,
+    "distance": 2428,
+    "coins": 2
   },
   {
     "name": "User0",

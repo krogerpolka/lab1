@@ -19,7 +19,7 @@ CREATE OR REPLACE PROCEDURE add_phone(
     p_type         VARCHAR    -- phone type: must be 'home', 'work', or 'mobile'
 )
 LANGUAGE plpgsql
-AS $$
+AS $$ -- plpgsql is the procedural language for PostgreSQL, allowing us to write complex logic with variables, control flow, and error handling.
 DECLARE
     v_id INTEGER;   -- will hold the contact's ID once found
 BEGIN

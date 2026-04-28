@@ -22,9 +22,9 @@ DEFAULT_SETTINGS = {
 }
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # LEADERBOARD  functions
-# ══════════════════════════════════════════════════════════════════════════════
+
 
 def load_leaderboard():
     """
@@ -79,9 +79,9 @@ def add_leaderboard_entry(username: str, score: int, distance: int, coins: int):
     save_leaderboard(entries)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # SETTINGS  functions
-# ══════════════════════════════════════════════════════════════════════════════
+
 
 def load_settings() -> dict:
     """
